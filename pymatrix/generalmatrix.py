@@ -9,11 +9,13 @@ class Matrix:
             Attributes:
             n (int) the number of rows in the matrix
             m (int) the number of columns in the matrix
+            with 0 < n * m < 2 ** 20
+
             matrix (list[list[floats]] the list of lists of floats
 
         """
-        self._n = None
-        self._m = None
+        self._n = 0
+        self._m = 0
         self._matrix = list()
 
     def get_dim(self):
@@ -34,7 +36,7 @@ class Matrix:
         """
         return "{}-by-{}".format(self._n, self._m)
 
-    def add(self, vals_of_vals):
+    def add(self, nums):
         """ Function to add to the matrix attributes:
 
         Args:
@@ -44,14 +46,14 @@ class Matrix:
             None
         """
 
-        n = len(vals_of_vals)
+        n = len(nums)
         try:
-            m = len(vals_of_vals[0])
+            m = len(nums[0])
         except TypeError:
             m = 1
 
         self._add_dim(n, m)
-        self._add_matrix(vals_of_vals)
+        self._add_matrix(nums)
 
     def read_data_file(self, file_name):
         """ Method in Matrix class to read in data from a txt file. The txt file
@@ -77,7 +79,7 @@ class Matrix:
         with open(file_name) as f:
             data_list = []
             lines = f.readlines()
-            n, m = list(map(float, lines[0].split()))
+            n, m = list(map(int, lines[0].split()))
             for line in lines[1:]:
                 vals = list(map(float, line.split()))
                 data_list.append(vals)
@@ -88,7 +90,7 @@ class Matrix:
             self._add_dim(n, m)
             self._add_matrix(data_list)
         else:
-            print("file need to be in correct format")
+            print("file needs to be in correct format")
 
     def _add_dim(self, n, m):
         """ Private method util function to add dimension to the rectangular matrix
@@ -104,7 +106,7 @@ class Matrix:
         self._n = n
         self._m = m
 
-    def _add_matrix(self, vals_of_vals):
+    def _add_matrix(self, nums):
         """ Private method util function to add a list of lists of values
         to the matrix class to obtain a matrix class
 
@@ -115,9 +117,11 @@ class Matrix:
             None
 
         """
-
-        for i in range(self._n):
-            self._matrix[i] = []
-            for j in range(self._m):
-                val_index = vals_of_vals[i][j]
-                self._matrix[i].append(val_index)
+        self._matrix = [None for i in range(self._n)]
+        if self._m == 1:       
+            for i in range(self._n):
+                self._matrix[i] = [nums[i]]
+        
+        else:
+            for i in range(self._n):
+                self._matrix[i] = nums[i]
