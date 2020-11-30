@@ -82,6 +82,8 @@ class Matrix:
                 vals = list(map(float, line.split()))
                 data_list.append(vals)
 
+        f.close()
+
         if n == len(data_list) and m == len(data_list[0]):
             self._add_dim(n, m)
             self._add_matrix(data_list)
@@ -107,7 +109,7 @@ class Matrix:
         to the matrix class to obtain a matrix class
 
         Args:
-            list[list[float]]
+            list[list[float]] or list[float]
 
         Returns:
             None

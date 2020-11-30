@@ -1,6 +1,16 @@
-# TODO: Fill out this file with information about your package
+import setuptools
 
-# HINT: Go back to the object-oriented programming lesson "Putting Code on PyPi" and "Exercise: Upload to PyPi"
+with open("README.md", "r") as fh:
+    long_description = fh.read()
 
-# HINT: Here is an example of a setup.py file
-# https://packaging.python.org/tutorials/packaging-projects/
+setuptools.setup(
+    name="robedbeauvile001",
+    version="0.0.1",
+    author="Robed Beauvile",
+    author_email="robedbeauvile001@gmail.com",
+    description="A python package that does basic matrix algebra.",
+    long_description=long_description,
+    long_description_content_type="text/markdown",
+    url="https://github.com/beauvilerobed/py-matrix",
+    packages=setuptools.find_packages()
+)

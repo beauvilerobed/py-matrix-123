@@ -9,7 +9,7 @@ requirements:
 `unittest`
 
 To test:
-`cd py-matrix`
 
-Run:
+Run  
+
 `python3 tests.py`
