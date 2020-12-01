@@ -35,7 +35,53 @@ class TestMatrix(unittest.TestCase):
         for case, solution in cases:
             self.matrix.add(case)
             self.assertEqual(self.matrix.get_dim(), solution)
-        
+    
+
+    def test_add_two_matrices_small(self):
+        cases = [
+            ([[1], [3], [4], [5]], 
+             [[1], [0], [2], [5]], 
+             [[2.0], [3.0], [6.0], [10.0]]),
+
+            ([[1, 2], [3, -1], [4, 0.0], [5, -18]], 
+             [1, 0, 2, 5], 
+              None),
+
+            ([1.1, 3, 4, 5], 
+             [1, 0, -2.0, -5], 
+             [[2.0, 2.0, 4.0, 0.0]])
+        ]
+        for A, B, solution in cases:
+            matrixA = Matrix()
+            matrixA.add(A)
+            matrixB = Matrix()
+            matrixB.add(B)
+            if solution is not None:
+                matrixSol = Matrix()
+                matrixSol.add(solution)
+            else:
+                matrixSol = None
+            self.assertEqual(matrixA + matrixB, matrixSol)
+
+    def test_add_two_matrices_large(self):
+        cases = [
+            ([1] * 2 ** 20, [1] * 2 ** 20, [2.0] * 2 ** 20),
+            ([[1] * 2 ** 10 for _ in range(2 ** 10)],
+             [[1] * 2 ** 7 for _ in range(2 ** 13)], 
+             None),
+        ]
+        for A, B, solution in cases:
+            matrixA = Matrix()
+            matrixA.add(A)
+            matrixB = Matrix()
+            matrixB.add(B)
+            if solution is not None:
+                matrixSol = Matrix()
+                matrixSol.add(solution)
+            else:
+                matrixSol = None
+            self.assertEqual(matrixA + matrixB, matrixSol)
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -16,7 +16,7 @@ class Matrix:
         """
         self._n = 0
         self._m = 0
-        self._matrix = list()
+        self.matrix = list()
 
     def get_dim(self):
         """ A method to return the dimension of
@@ -117,12 +117,30 @@ class Matrix:
             None
 
         """
-        self._matrix = [None for i in range(self._n)]
+        self.matrix = [None for i in range(self._n)]
         if self._m == 1:       
             for i in range(self._n):
-                self._matrix[i] = [nums[i]]
+                self.matrix[i] = [nums[i]]
         
         else:
             for i in range(self._n):
-                self._matrix[i] = nums[i]
+                self.matrix[i] = nums[i]
 
+    def __add__(self, other):
+        result = Matrix()
+        temp = [None for _ in range(self._n)]
+
+        if self.get_dim() == other.get_dim():
+            n, m = len(self.matrix), len(self.matrix[0])
+            for i in range(n):
+                vals = []
+                for j in range(m):
+                    sum_index = self.matrix[i][j] + other.matrix[i][j]
+                    vals.append(sum_index)
+                temp[i] = vals
+
+        else:
+            return None
+                  
+        result.add(temp)
+        return result
