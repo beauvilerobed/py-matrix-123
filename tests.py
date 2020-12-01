@@ -127,13 +127,13 @@ class TestMatrix(unittest.TestCase):
     def test_scalar_mul(self):
         cases = [
             (5.0, [[1], [0], [2], [5]], 
-                  [[5.0], [0.0], [10.0], [25.0]]),
+                  [[5.0*1], [5.0*0], [2*5.0], [5*5.0]]),
 
             (3, [1, 0, 2, 5], 
-                [3, 0, 6, 15]),
+                [3*1, 3*0, 2*3, 3*5]),
 
             (0, [[2.1, 9], [3, 3], [2.0, 5], [0, 7]], 
-                [[0.0, 0], [0, 0], [0.0, 0], [0, 0]])
+                [[2.1*0, 9*0], [3*0, 0*0], [0*2.0, 0*0], [0*0, 7*0]])
         ]
         for num, A, solution in cases:
             matrixA = Matrix(A)
@@ -141,7 +141,16 @@ class TestMatrix(unittest.TestCase):
             matrixSol = Matrix(solution)
             self.assertEqual(actual.matrix, matrixSol.matrix)
 
-    # def test_scalar_mul_large(self):
+    def test_scalar_mul_large(self):
+        cases = [
+            (18.1, [1] * 2 ** 18, [[1*18.1]] * 2 ** 18),
+            (-15, [[1, 2, 3]] * 2 ** 15, [[-15*1, -15*2, -15*3]] * 2 ** 15),
+        ]
+        for num, A, solution in cases:
+            matrixA = Matrix(A)
+            actual = matrixA * num
+            matrixSol = Matrix(solution)
+            self.assertEqual(actual.matrix, matrixSol.matrix)
 
 
 

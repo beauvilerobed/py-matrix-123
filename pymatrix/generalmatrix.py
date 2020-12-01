@@ -196,10 +196,11 @@ class Matrix:
             Matrix: A different
             
         """
-        temp = copy.deepcopy(self.matrix)
+
+        temp = [[] for i in range(self._n)]
         for i in range(self._n):
             for j in range(self._m):
-                temp[i][j] = num * temp[i][j]
+                temp[i].append(num * self.matrix[i][j])
         
         return Matrix(temp)
 
