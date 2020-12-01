@@ -51,6 +51,7 @@ class Matrix:
         n = len(nums)
         if n == 0:
             return
+
         try:
             m = len(nums[0])
         except TypeError:
@@ -155,7 +156,7 @@ class Matrix:
         result.add(temp)
         return result
 
-    def __repr__(self):
+    def __str__(self):
         """ Function to output the matrix of the Matrix instance
 		
 		Args:
