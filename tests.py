@@ -85,6 +85,26 @@ class TestMatrix(unittest.TestCase):
             matrixSol = Matrix(solution)
             matrixActual = matrixA + matrixB
             self.assertEqual(matrixActual.matrix, matrixSol.matrix)
+    
+    def test_scalar_mul_small(self):
+        cases = [
+            (5.0, [[1], [0], [2], [5]], 
+                  [[5.0], [0.0], [10.0], [25.0]]),
+
+            (3, [1, 0, 2, 5], 
+                [3, 0, 6, 15]),
+
+            (0, [[2.1, 9], [3, 3], [2.0, 5], [0, 7]], 
+                [[0.0, 0], [0, 0], [0.0, 0], [0, 0]])
+        ]
+        for num, A, solution in cases:
+            matrixA = Matrix(A)
+            actual = matrixA * num
+            matrixSol = Matrix(solution)
+            self.assertEqual(actual.matrix, matrixSol.matrix)
+
+    # def test_scalar_mul_large(self):
+
 
 
 if __name__ == '__main__':

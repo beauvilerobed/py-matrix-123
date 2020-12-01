@@ -1,5 +1,7 @@
 # python3
 
+import copy
+
 
 class Matrix:
     def __init__(self, matrix=None):
@@ -130,14 +132,14 @@ class Matrix:
 
     def __add__(self, other):
         """ Function to add together two Matrices
-		
-		Args:
-			other (Matrix): Matrix instance
-			
-		Returns:
-			Matrix
-			
-		"""
+        
+        Args:
+            other (Matrix): Matrix instance
+            
+        Returns:
+            Matrix
+            
+        """
         result = Matrix()
         temp = [None for _ in range(self._n)]
 
@@ -156,14 +158,31 @@ class Matrix:
         result.add(temp)
         return result
 
+    def __mul__(self, num):
+        """ Function to multiply together two Matrices
+        
+        Args:
+            other (Matrix): Matrix instance
+            
+        Returns:
+            Matrix: A different
+            
+        """
+        temp = copy.deepcopy(self.matrix)
+        for i in range(self._n):
+            for j in range(self._m):
+                temp[i][j] = num * temp[i][j]
+        
+        return Matrix(temp)
+
     def __str__(self):
         """ Function to output the matrix of the Matrix instance
-		
-		Args:
-			None
-		
-		Returns:
-			string
-		
-		"""
+        
+        Args:
+            None
+        
+        Returns:
+            string
+        
+        """
         return str(self.matrix)
