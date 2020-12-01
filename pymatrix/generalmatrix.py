@@ -126,6 +126,15 @@ class Matrix:
             self.matrix[i] = nums[i]
 
     def __add__(self, other):
+        """ Function to add together two Matrices
+		
+		Args:
+			other (Matrix): Matrix instance
+			
+		Returns:
+			Matrix
+			
+		"""
         result = Matrix()
         temp = [None for _ in range(self._n)]
 
@@ -145,4 +154,13 @@ class Matrix:
         return result
 
     def __repr__(self):
+        """ Function to output the matrix of the Matrix instance
+		
+		Args:
+			None
+		
+		Returns:
+			string
+		
+		"""
         return str(self.matrix)
