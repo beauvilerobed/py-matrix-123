@@ -1,11 +1,11 @@
 import unittest
-from pymatrix import Matrix
+from pymatrix import TransMatrix, Matrix
 
 
 
-class TestMatrix(unittest.TestCase):
+class TestTransMatrix(unittest.TestCase):
     def setUp(self):
-        self.matrix = Matrix()
+        self.matrix = TransMatrix()
         self.matrix.read_data_file('numbers-1-by-4.txt')
 
     def test_read_data(self):
@@ -65,9 +65,9 @@ class TestMatrix(unittest.TestCase):
              [[1.1+1], [3+0], [4-2.0], [5-5]])
         ]
         for A, B, solution in cases:
-            matrixA = Matrix(A)
-            matrixB = Matrix(B)
-            matrixSol = Matrix(solution)
+            matrixA = TransMatrix(A)
+            matrixB = TransMatrix(B)
+            matrixSol = TransMatrix(solution)
             matrixActual = matrixA + matrixB
             self.assertEqual(matrixActual.matrix, matrixSol.matrix)
 
@@ -80,9 +80,9 @@ class TestMatrix(unittest.TestCase):
              []),
         ]
         for A, B, solution in cases:
-            matrixA = Matrix(A)
-            matrixB = Matrix(B)
-            matrixSol = Matrix(solution)
+            matrixA = TransMatrix(A)
+            matrixB = TransMatrix(B)
+            matrixSol = TransMatrix(solution)
             matrixActual = matrixA + matrixB
             self.assertEqual(matrixActual.matrix, matrixSol.matrix)
     
@@ -101,9 +101,9 @@ class TestMatrix(unittest.TestCase):
              [[1.1-1], [3-0], [4-(-2.0)], [5-(-5)]])
         ]
         for A, B, solution in cases:
-            matrixA = Matrix(A)
-            matrixB = Matrix(B)
-            matrixSol = Matrix(solution)
+            matrixA = TransMatrix(A)
+            matrixB = TransMatrix(B)
+            matrixSol = TransMatrix(solution)
             matrixActual = matrixA - matrixB
             self.assertEqual(matrixActual.matrix, matrixSol.matrix)
 
@@ -118,9 +118,9 @@ class TestMatrix(unittest.TestCase):
              []),
         ]
         for A, B, solution in cases:
-            matrixA = Matrix(A)
-            matrixB = Matrix(B)
-            matrixSol = Matrix(solution)
+            matrixA = TransMatrix(A)
+            matrixB = TransMatrix(B)
+            matrixSol = TransMatrix(solution)
             matrixActual = matrixA - matrixB
             self.assertEqual(matrixActual.matrix, matrixSol.matrix)
     
@@ -136,9 +136,9 @@ class TestMatrix(unittest.TestCase):
                 [[2.1*0, 9*0], [3*0, 0*0], [0*2.0, 0*0], [0*0, 7*0]])
         ]
         for num, A, solution in cases:
-            matrixA = Matrix(A)
+            matrixA = TransMatrix(A)
             actual = matrixA * num
-            matrixSol = Matrix(solution)
+            matrixSol = TransMatrix(solution)
             self.assertEqual(actual.matrix, matrixSol.matrix)
 
     def test_scalar_mul_large(self):
@@ -147,11 +147,14 @@ class TestMatrix(unittest.TestCase):
             (-15, [[1, 2, 3]] * 2 ** 15, [[-15*1, -15*2, -15*3]] * 2 ** 15),
         ]
         for num, A, solution in cases:
-            matrixA = Matrix(A)
+            matrixA = TransMatrix(A)
             actual = matrixA * num
-            matrixSol = Matrix(solution)
+            matrixSol = TransMatrix(solution)
             self.assertEqual(actual.matrix, matrixSol.matrix)
 
+
+# class TestMatrix(unittest.TestCase):
+#     def test_matrix_multiply_small(self):
 
 
 if __name__ == '__main__':

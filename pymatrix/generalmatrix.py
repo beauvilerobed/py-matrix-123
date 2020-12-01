@@ -3,10 +3,12 @@
 import copy
 
 
-class Matrix:
+class TransMatrix:
     def __init__(self, matrix=None):
         """ A gerneral n-by-m matrix class for
-        calculating basic algebra
+        calculating basic algebra.
+        Note: The matrix A is said to represent the linear map f, 
+              and A is called the transformation matrix of f.
 
             Attributes:
             n (int) the number of rows in the matrix
@@ -62,7 +64,7 @@ class Matrix:
             m = 1
 
         self._add_dim(n, m)
-        self._add_matrix(nums)
+        self._add_TransMatrix(nums)
 
     def read_data_file(self, file_name):
         """ Method in Matrix class to read in data from a txt file. The txt file
@@ -97,7 +99,7 @@ class Matrix:
 
         if n == len(data_list) and m == len(data_list[0]):
             self._add_dim(n, m)
-            self._add_matrix(data_list)
+            self._add_TransMatrix(data_list)
         else:
             print("file needs to be in correct format")
 
@@ -115,7 +117,7 @@ class Matrix:
         self._n = n
         self._m = m
 
-    def _add_matrix(self, nums):
+    def _add_TransMatrix(self, nums):
         """ Private method util function to add a list of lists of values
         to the matrix class to obtain a matrix class
 
@@ -140,7 +142,7 @@ class Matrix:
             Matrix
             
         """
-        result = Matrix()
+        result = TransMatrix()
         temp = [None for _ in range(self._n)]
 
         if self.get_dim() == other.get_dim():
@@ -168,7 +170,7 @@ class Matrix:
             Matrix
             
         """
-        result = Matrix()
+        result = TransMatrix()
         temp = [None for _ in range(self._n)]
 
         if self.get_dim() == other.get_dim():
@@ -202,23 +204,7 @@ class Matrix:
             for j in range(self._m):
                 temp[i].append(num * self.matrix[i][j])
         
-        return Matrix(temp)
-
-    # def __mul__(self, other):
-    #     """ Function to multiply together two Matrices
-        
-    #     Args:
-    #         other (Matrix): Matrix instance
-            
-    #     Returns:
-    #         Matrix: A different
-            
-    #     """
-    #     temp = copy.deepcopy(self.matrix)
-    #     for i in range(self._n):
-    #         temp[i] = num * temp[i] * 
-        
-    #     return Matrix(temp)
+        return TransMatrix(temp)
 
     def __str__(self):
         """ Function to output the matrix of the Matrix instance
