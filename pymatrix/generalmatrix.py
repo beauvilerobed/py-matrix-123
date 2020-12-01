@@ -125,3 +125,4 @@ class Matrix:
         else:
             for i in range(self._n):
                 self._matrix[i] = nums[i]
+
