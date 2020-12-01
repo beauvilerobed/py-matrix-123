@@ -157,6 +157,34 @@ class Matrix:
 
         result.add(temp)
         return result
+    
+    def __sub__(self, other):
+        """ Function to subtract together two Matrices
+        
+        Args:
+            other (Matrix): Matrix instance
+            
+        Returns:
+            Matrix
+            
+        """
+        result = Matrix()
+        temp = [None for _ in range(self._n)]
+
+        if self.get_dim() == other.get_dim():
+            n, m = len(self.matrix), len(self.matrix[0])
+            for i in range(n):
+                vals = []
+                for j in range(m):
+                    sum_index = self.matrix[i][j] - other.matrix[i][j]
+                    vals.append(sum_index)
+                temp[i] = vals
+
+        else:
+            return result
+
+        result.add(temp)
+        return result
 
     def __mul__(self, num):
         """ Function to multiply together two Matrices
@@ -174,6 +202,22 @@ class Matrix:
                 temp[i][j] = num * temp[i][j]
         
         return Matrix(temp)
+
+    # def __mul__(self, other):
+    #     """ Function to multiply together two Matrices
+        
+    #     Args:
+    #         other (Matrix): Matrix instance
+            
+    #     Returns:
+    #         Matrix: A different
+            
+    #     """
+    #     temp = copy.deepcopy(self.matrix)
+    #     for i in range(self._n):
+    #         temp[i] = num * temp[i] * 
+        
+    #     return Matrix(temp)
 
     def __str__(self):
         """ Function to output the matrix of the Matrix instance

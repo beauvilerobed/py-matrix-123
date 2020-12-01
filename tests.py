@@ -54,7 +54,7 @@ class TestMatrix(unittest.TestCase):
         cases = [
             ([[1], [3], [4], [5]], 
              [[1], [0], [2], [5]], 
-             [[2], [3], [6], [10]]),
+             [[1+1], [3+0], [4+2], [5+5]]),
 
             ([[1, 2], [3, -1], [4, 0.0], [5, -18]], 
              [1, 0, 2, 5], 
@@ -62,7 +62,7 @@ class TestMatrix(unittest.TestCase):
 
             ([1.1, 3, 4, 5], 
              [1, 0, -2.0, -5], 
-             [[2.1], [3], [2.0], [0]])
+             [[1.1+1], [3+0], [4-2.0], [5-5]])
         ]
         for A, B, solution in cases:
             matrixA = Matrix(A)
@@ -73,8 +73,8 @@ class TestMatrix(unittest.TestCase):
 
     def test_add_two_matrices_large(self):
         cases = [
-            ([1] * 2 ** 18, [1] * 2 ** 18, [[2]] * 2 ** 18),
-            ([[1, 2, 3]] * 2 ** 15, [[1, 2, 3]] * 2 ** 15, [[2, 4, 6]] * 2 ** 15),
+            ([1] * 2 ** 18, [1] * 2 ** 18, [[1+1]] * 2 ** 18),
+            ([[1, 2, 3]] * 2 ** 15, [[1, 2, 3]] * 2 ** 15, [[1+1, 2+2, 3+3]] * 2 ** 15),
             ([[1] * 2 ** 10 for _ in range(2 ** 10)],
              [[1] * 2 ** 7 for _ in range(2 ** 13)], 
              []),
@@ -86,7 +86,45 @@ class TestMatrix(unittest.TestCase):
             matrixActual = matrixA + matrixB
             self.assertEqual(matrixActual.matrix, matrixSol.matrix)
     
-    def test_scalar_mul_small(self):
+    def test_subtract_two_matrices_small(self):
+        cases = [
+            ([[1], [3], [4], [5]], 
+             [[1], [0], [2], [5]], 
+             [[1-1], [3-0], [4-2], [5-5]]),
+
+            ([[1, 2], [3, -1], [4, 0.0], [5, -18]], 
+             [1, 0, 2, 5], 
+              []),
+
+            ([1.1, 3, 4, 5], 
+             [1, 0, -2.0, -5], 
+             [[1.1-1], [3-0], [4-(-2.0)], [5-(-5)]])
+        ]
+        for A, B, solution in cases:
+            matrixA = Matrix(A)
+            matrixB = Matrix(B)
+            matrixSol = Matrix(solution)
+            matrixActual = matrixA - matrixB
+            self.assertEqual(matrixActual.matrix, matrixSol.matrix)
+
+    def test_subract_two_matrices_large(self):
+        cases = [
+            ([1] * 2 ** 18, [1] * 2 ** 18, [[1-1]] * 2 ** 18),
+            ([[1, 2, 3]] * 2 ** 15, 
+             [[1, 2, 3]] * 2 ** 15, 
+             [[1-1, 2-2, 3-3]] * 2 ** 15),
+            ([[1] * 2 ** 10 for _ in range(2 ** 10)],
+             [[1] * 2 ** 7 for _ in range(2 ** 13)], 
+             []),
+        ]
+        for A, B, solution in cases:
+            matrixA = Matrix(A)
+            matrixB = Matrix(B)
+            matrixSol = Matrix(solution)
+            matrixActual = matrixA - matrixB
+            self.assertEqual(matrixActual.matrix, matrixSol.matrix)
+    
+    def test_scalar_mul(self):
         cases = [
             (5.0, [[1], [0], [2], [5]], 
                   [[5.0], [0.0], [10.0], [25.0]]),
