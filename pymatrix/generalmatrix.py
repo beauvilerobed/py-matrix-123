@@ -2,7 +2,7 @@
 
 
 class Matrix:
-    def __init__(self):
+    def __init__(self, matrix=None):
         """ A gerneral n-by-m matrix class for
         calculating basic algebra
 
@@ -17,6 +17,8 @@ class Matrix:
         self._n = 0
         self._m = 0
         self.matrix = []
+        if matrix:
+            self.add(matrix)
 
     def get_dim(self):
         """ A method to return the dimension of

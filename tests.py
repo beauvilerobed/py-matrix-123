@@ -65,12 +65,9 @@ class TestMatrix(unittest.TestCase):
              [[2.1], [3], [2.0], [0]])
         ]
         for A, B, solution in cases:
-            matrixA = Matrix()
-            matrixA.add(A)
-            matrixB = Matrix()
-            matrixB.add(B)
-            matrixSol = Matrix()
-            matrixSol.add(solution)
+            matrixA = Matrix(A)
+            matrixB = Matrix(B)
+            matrixSol = Matrix(solution)
             matrixActual = matrixA + matrixB
             self.assertEqual(matrixActual.matrix, matrixSol.matrix)
 
@@ -83,12 +80,9 @@ class TestMatrix(unittest.TestCase):
              []),
         ]
         for A, B, solution in cases:
-            matrixA = Matrix()
-            matrixA.add(A)
-            matrixB = Matrix()
-            matrixB.add(B)
-            matrixSol = Matrix()
-            matrixSol.add(solution)
+            matrixA = Matrix(A)
+            matrixB = Matrix(B)
+            matrixSol = Matrix(solution)
             matrixActual = matrixA + matrixB
             self.assertEqual(matrixActual.matrix, matrixSol.matrix)
 
