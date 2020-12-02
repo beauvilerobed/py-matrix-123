@@ -2,14 +2,12 @@ import unittest
 from pymatrix import Matrix, SquareMatrix
 
 
-
 class TestMatrix(unittest.TestCase):
     def setUp(self):
         self.matrix = Matrix()
         self.matrix.read_data_file('numbers-1-by-4.txt')
         self.nullcase = ([[1] * 2 ** 10 for _ in range(2 ** 10)],
-                         [[1] * 2 ** 7 for _ in range(2 ** 13)], 
-                          [])
+                         [[1] * 2 ** 7 for _ in range(2 ** 13)], [])
 
     def test_read_data(self):
         self.assertEqual(self.matrix.get_dim(), "1-by-4")
@@ -34,7 +32,10 @@ class TestMatrix(unittest.TestCase):
             ([1, 3, 4, 5], "4-by-1"),
             ([[1], [3], [4], [5]], "4-by-1"),
             ([[1, 3, 4, 5]], "1-by-4"),
-            ([[1, 2, -3], [0, -1.0, 3.9], [0, -1.0, 3.9], [0, -1.0, 3.9]], "4-by-3"),
+            ([[1, 2, -3], 
+              [0, -1.0, 3.9], 
+              [0, -1.0, 3.9], 
+              [0, -1.0, 3.9]], "4-by-3"),
         ]
 
         for case, solution in cases:
@@ -52,7 +53,6 @@ class TestMatrix(unittest.TestCase):
             self.matrix.add(case)
             self.assertEqual(self.matrix.get_dim(), solution)
     
-
     def test_add_two_matrices_small(self):
         cases = [
             ([[1], [3], [4], [5]], 
@@ -60,8 +60,7 @@ class TestMatrix(unittest.TestCase):
              [[1+1], [3+0], [4+2], [5+5]]),
 
             ([[1, 2], [3, -1], [4, 0.0], [5, -18]], 
-             [1, 0, 2, 5], 
-              []),
+             [1, 0, 2, 5], []),
 
             ([1.1, 3, 4, 5], 
              [1, 0, -2.0, -5], 
@@ -77,7 +76,9 @@ class TestMatrix(unittest.TestCase):
     def test_add_two_matrices_large(self):
         cases = [
             ([1] * 2 ** 18, [1] * 2 ** 18, [[1+1]] * 2 ** 18),
-            ([[1, 2, 3]] * 2 ** 15, [[1, 2, 3]] * 2 ** 15, [[1+1, 2+2, 3+3]] * 2 ** 15),
+            ([[1, 2, 3]] * 2 ** 15, 
+             [[1, 2, 3]] * 2 ** 15, 
+             [[1+1, 2+2, 3+3]] * 2 ** 15),
             self.nullcase,
         ]
         for A, B, solution in cases:
@@ -94,8 +95,7 @@ class TestMatrix(unittest.TestCase):
              [[1-1], [3-0], [4-2], [5-5]]),
 
             ([[1, 2], [3, -1], [4, 0.0], [5, -18]], 
-             [1, 0, 2, 5], 
-              []),
+             [1, 0, 2, 5], []),
 
             ([1.1, 3, 4, 5], 
              [1, 0, -2.0, -5], 
@@ -113,8 +113,7 @@ class TestMatrix(unittest.TestCase):
             ([1] * 2 ** 18, [1] * 2 ** 18, [[1-1]] * 2 ** 18),
             ([[1, 2, 3]] * 2 ** 15, 
              [[1, 2, 3]] * 2 ** 15, 
-             [[1-1, 2-2, 3-3]] * 2 ** 15),
-             self.nullcase,
+             [[1-1, 2-2, 3-3]] * 2 ** 15), self.nullcase,
         ]
         for A, B, solution in cases:
             matrixA = Matrix(A)
@@ -155,12 +154,11 @@ class TestMatrix(unittest.TestCase):
 class TestSquareMatrix(unittest.TestCase):
     def setUp(self):
         self.nullcase = ([[1] * 2 ** 10 for _ in range(2 ** 10)],
-                         [[1] * 2 ** 7 for _ in range(2 ** 13)], 
-                          [])
+                         [[1] * 2 ** 7 for _ in range(2 ** 13)], [])
 
     def test_matrix_multiply_small(self):
         cases = [
-            ([[1, 2],[3, 4]], 
+            ([[1, 2], [3, 4]], 
              [[4, 3], [2, 1]], 
              [[1*4 + 2*2, 1*3 + 2*1], [3*4 + 4*2, 4*1+3*3]]),
         ]

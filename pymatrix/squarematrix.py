@@ -1,11 +1,13 @@
 from .generalmatrix import Matrix
 
+
 class SquareMatrix(Matrix):
     def __init__(self, matrix=None):
         Matrix.__init__(self, matrix)
 
     def __mul__(self, other):
         """ Function to multiply together two Matrices
+        of square size
         
         Args:
             other (Matrix): Matrix instance
@@ -66,7 +68,7 @@ class SquareMatrix(Matrix):
 
                 z22 = (((p5 - p3) - p7) + p1).matrix
 
-                r , c = len(z11)*2, len(z11)*2
+                r, c = len(z11)*2, len(z11)*2
                 z = [[0 for _ in range(r)] for _ in range(c)]
                 for i in range(len(z11)):
                     for j in range(len(z11)):
@@ -93,7 +95,6 @@ class SquareMatrix(Matrix):
                     c[i] = c[i][:len(c[i])//2]
                     d[i] = d[i][len(d[i])//2:]
             return a, b, c, d
-
 
         dim1 = self.get_dim().split('-')[2]
         dim2 = self.get_dim().split('-')[0]
