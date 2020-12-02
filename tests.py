@@ -181,6 +181,29 @@ class TestSquareMatrix(unittest.TestCase):
             matrixSol = SquareMatrix(solution)
             self.assertEqual(actual.matrix, matrixSol.matrix)
 
+    def test_trace_small(self):
+        cases = [
+            ([[1, 2], [3, 4]], 1+4),
+            ([[4, 3], [2, 1]], 1+4),
+
+            ([[1, 2, 0], 
+              [3, 4, -1.0], 
+              [2, 4, 0]], 1+4+0), 
+
+            ([[4, 3, -1], 
+              [2, 1, 2.0], 
+              [0, 15, -1.1]], 4+1+(-1.1)), 
+
+            ([[1*4+2*2+0*0, 1*3+2*1+0*15, 1*(-1)+2*2.0+0*(-1.1)], 
+              [3*4+4*2+(-1.0)*0, 4*1+3*3+(-1.0)*15, 3*(-1)+4*2.0+(-1.0)*(-1.1)], 
+              [2*4+4*2+0*0, 2*3+4*1+0*15, 2*(-1)+(2.0)*4+0*(-1.1)]], 
+              1*4+2*2+0*0+4*1+3*3+(-1.0)*15+2*(-1)+(2.0)*4+0*(-1.1)),
+        ]
+        for A, solution in cases:
+            matrixA = SquareMatrix(A)
+            actual = matrixA.trace()
+            self.assertEqual(actual, solution)
+
 
 if __name__ == '__main__':
     unittest.main()

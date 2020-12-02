@@ -16,15 +16,13 @@ class SquareMatrix(Matrix):
             Matrix: A different
             
         """
-        n = int(self.get_dim().split('-')[0])
         m = int(self.get_dim().split('-')[2])
         q = int(other.get_dim().split('-')[0])
-        p = int(other.get_dim().split('-')[2])
-        result = [None for _ in range(n)]
+        result = [None for _ in range(m)]
         if m == q:
-            for i in range(n):
+            for i in range(m):
                 vals = []
-                for j in range(p):
+                for j in range(m):
                     total = 0
                     for k in range(m):
                         total += self.matrix[i][k] * other.matrix[k][j]
@@ -35,4 +33,24 @@ class SquareMatrix(Matrix):
 
         result = Matrix(result)
         return result
+        
+    def trace(self):
+        """ Function to take the trace of a Matrices
+        of size n-by-n
+
+        n (int) number of rows and column
+
+        Args:
+            other (Matrix): Matrix instance
+            
+        Returns:
+            float
+            
+        """
+        trace = 0
+        n = int(self.get_dim().split('-')[0])
+        for i in range(n):
+            trace += self.matrix[i][i]
+
+        return trace
         
