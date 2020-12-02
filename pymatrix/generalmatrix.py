@@ -146,7 +146,7 @@ class Matrix:
         temp = [None for _ in range(self._n)]
 
         if self.get_dim() == other.get_dim():
-            n, m = len(self.matrix), len(self.matrix[0])
+            n, m = self._n, self._m
             for i in range(n):
                 vals = []
                 for j in range(m):
@@ -174,7 +174,7 @@ class Matrix:
         temp = [None for _ in range(self._n)]
 
         if self.get_dim() == other.get_dim():
-            n, m = len(self.matrix), len(self.matrix[0])
+            n, m = self._n, self._m
             for i in range(n):
                 vals = []
                 for j in range(m):
