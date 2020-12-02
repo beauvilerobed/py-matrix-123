@@ -1,2 +1,2 @@
-from .generalmatrix import TransMatrix
-from .matrix import Matrix
+from .generalmatrix import Matrix
+from .matrix import SquareMatrix

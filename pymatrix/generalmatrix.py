@@ -3,7 +3,7 @@
 import copy
 
 
-class TransMatrix:
+class Matrix:
     def __init__(self, matrix=None):
         """ A gerneral n-by-m matrix class for
         calculating basic algebra.
@@ -64,7 +64,7 @@ class TransMatrix:
             m = 1
 
         self._add_dim(n, m)
-        self._add_TransMatrix(nums)
+        self._add_Matrix(nums)
 
     def read_data_file(self, file_name):
         """ Method in Matrix class to read in data from a txt file. The txt file
@@ -99,7 +99,7 @@ class TransMatrix:
 
         if n == len(data_list) and m == len(data_list[0]):
             self._add_dim(n, m)
-            self._add_TransMatrix(data_list)
+            self._add_Matrix(data_list)
         else:
             print("file needs to be in correct format")
 
@@ -117,7 +117,7 @@ class TransMatrix:
         self._n = n
         self._m = m
 
-    def _add_TransMatrix(self, nums):
+    def _add_Matrix(self, nums):
         """ Private method util function to add a list of lists of values
         to the matrix class to obtain a matrix class
 
@@ -142,7 +142,7 @@ class TransMatrix:
             Matrix
             
         """
-        result = TransMatrix()
+        result = Matrix()
         temp = [None for _ in range(self._n)]
 
         if self.get_dim() == other.get_dim():
@@ -170,7 +170,7 @@ class TransMatrix:
             Matrix
             
         """
-        result = TransMatrix()
+        result = Matrix()
         temp = [None for _ in range(self._n)]
 
         if self.get_dim() == other.get_dim():
@@ -204,7 +204,7 @@ class TransMatrix:
             for j in range(self._m):
                 temp[i].append(num * self.matrix[i][j])
         
-        return TransMatrix(temp)
+        return Matrix(temp)
 
     def __str__(self):
         """ Function to output the matrix of the Matrix instance
