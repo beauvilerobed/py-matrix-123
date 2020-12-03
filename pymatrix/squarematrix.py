@@ -41,11 +41,20 @@ class SquareMatrix(Matrix):
         n (int) number of rows and column
 
         Args:
-            other (Matrix): Matrix instance
+            None
             
         Returns:
             float
-            
+
+        e.g. give A = 1 2 3 4 5
+                      4 3 2 1 1
+                      0 1 5 6 9
+                      0 0 2 3 8
+                      1 1 2 9 9
+        
+        then the trace of A is the sum
+        A[0][0] + A[1][1] + A[2][2] + A[3][3] + A[4][4] = 21
+           1         3         5         3         9
         """
         trace = 0
         n = int(self.get_dim().split('-')[0])
@@ -53,4 +62,3 @@ class SquareMatrix(Matrix):
             trace += self.matrix[i][i]
 
         return trace
-        
