@@ -25,7 +25,7 @@ class SquareMatrix(Matrix):
                 for j in range(m):
                     total = 0
                     for k in range(m):
-                        total += self.matrix[i][k] * other.matrix[k][j]
+                        total += self.entries[i][k] * other.entries[k][j]
                     vals.append(total)
                 result[i] = vals
         else:
@@ -59,6 +59,6 @@ class SquareMatrix(Matrix):
         trace = 0
         n = int(self.get_dim().split('-')[0])
         for i in range(n):
-            trace += self.matrix[i][i]
+            trace += self.entries[i][i]
 
         return trace

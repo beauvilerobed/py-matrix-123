@@ -4,15 +4,15 @@ from pymatrix import Matrix, SquareMatrix
 
 class TestMatrix(unittest.TestCase):
     def setUp(self):
-        self.matrix = Matrix()
-        self.matrix.read_data_file('numbers-1-by-4.txt')
+        self.entries = Matrix()
+        self.entries.read_data_file('numbers-1-by-4.txt')
         self.nullcase = ([[1] * 2 ** 10 for _ in range(2 ** 10)],
                          [[1] * 2 ** 7 for _ in range(2 ** 13)], [])
 
     def test_read_data(self):
-        self.assertEqual(self.matrix.get_dim(), "1-by-4")
-        self.matrix.read_data_file('numbers-4-by-1.txt')
-        self.assertEqual(self.matrix.get_dim(), "4-by-1")
+        self.assertEqual(self.entries.get_dim(), "1-by-4")
+        self.entries.read_data_file('numbers-4-by-1.txt')
+        self.assertEqual(self.entries.get_dim(), "4-by-1")
     
     def test_add(self):
         cases = [
@@ -24,8 +24,8 @@ class TestMatrix(unittest.TestCase):
         ]
 
         for case, solution in cases:
-            self.matrix.add(case)
-            self.assertEqual(self.matrix.matrix, solution)
+            self.entries.add(case)
+            self.assertEqual(self.entries.entries, solution)
 
     def test_get_dim_small(self):
         cases = [
@@ -39,8 +39,8 @@ class TestMatrix(unittest.TestCase):
         ]
 
         for case, solution in cases:
-            self.matrix.add(case)
-            self.assertEqual(self.matrix.get_dim(), solution)
+            self.entries.add(case)
+            self.assertEqual(self.entries.get_dim(), solution)
 
     def test_get_dim_large(self):
         cases = [
@@ -50,8 +50,8 @@ class TestMatrix(unittest.TestCase):
         ]
 
         for case, solution in cases:
-            self.matrix.add(case)
-            self.assertEqual(self.matrix.get_dim(), solution)
+            self.entries.add(case)
+            self.assertEqual(self.entries.get_dim(), solution)
     
     def test_add_two_matrices_small(self):
         cases = [
@@ -71,7 +71,7 @@ class TestMatrix(unittest.TestCase):
             matrixB = Matrix(B)
             matrixSol = Matrix(solution)
             matrixActual = matrixA + matrixB
-            self.assertEqual(matrixActual.matrix, matrixSol.matrix)
+            self.assertEqual(matrixActual.entries, matrixSol.entries)
 
     def test_add_two_matrices_large(self):
         cases = [
@@ -86,7 +86,7 @@ class TestMatrix(unittest.TestCase):
             matrixB = Matrix(B)
             matrixSol = Matrix(solution)
             matrixActual = matrixA + matrixB
-            self.assertEqual(matrixActual.matrix, matrixSol.matrix)
+            self.assertEqual(matrixActual.entries, matrixSol.entries)
     
     def test_subtract_two_matrices_small(self):
         cases = [
@@ -106,7 +106,7 @@ class TestMatrix(unittest.TestCase):
             matrixB = Matrix(B)
             matrixSol = Matrix(solution)
             matrixActual = matrixA - matrixB
-            self.assertEqual(matrixActual.matrix, matrixSol.matrix)
+            self.assertEqual(matrixActual.entries, matrixSol.entries)
 
     def test_subract_two_matrices_large(self):
         cases = [
@@ -120,7 +120,7 @@ class TestMatrix(unittest.TestCase):
             matrixB = Matrix(B)
             matrixSol = Matrix(solution)
             matrixActual = matrixA - matrixB
-            self.assertEqual(matrixActual.matrix, matrixSol.matrix)
+            self.assertEqual(matrixActual.entries, matrixSol.entries)
     
     def test_scalar_mul(self):
         cases = [
@@ -137,7 +137,7 @@ class TestMatrix(unittest.TestCase):
             matrixA = Matrix(A)
             actual = matrixA * num
             matrixSol = Matrix(solution)
-            self.assertEqual(actual.matrix, matrixSol.matrix)
+            self.assertEqual(actual.entries, matrixSol.entries)
 
     def test_scalar_mul_large(self):
         cases = [
@@ -148,7 +148,7 @@ class TestMatrix(unittest.TestCase):
             matrixA = Matrix(A)
             actual = matrixA * num
             matrixSol = Matrix(solution)
-            self.assertEqual(actual.matrix, matrixSol.matrix)
+            self.assertEqual(actual.entries, matrixSol.entries)
 
 
 class TestSquareMatrix(unittest.TestCase):
@@ -179,7 +179,7 @@ class TestSquareMatrix(unittest.TestCase):
             matrixB = SquareMatrix(B)
             actual = matrixA * matrixB
             matrixSol = SquareMatrix(solution)
-            self.assertEqual(actual.matrix, matrixSol.matrix)
+            self.assertEqual(actual.entries, matrixSol.entries)
 
     def test_trace_small(self):
         cases = [

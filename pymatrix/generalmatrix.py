@@ -20,7 +20,7 @@ class Matrix:
         """
         self._n = 0
         self._m = 0
-        self.matrix = []
+        self.entries = []
         if matrix:
             self.add(matrix)
 
@@ -128,9 +128,9 @@ class Matrix:
             None
 
         """
-        self.matrix = [None for i in range(self._n)]
+        self.entries = [None for i in range(self._n)]
         for i in range(self._n):
-            self.matrix[i] = nums[i]
+            self.entries[i] = nums[i]
 
     def __add__(self, other):
         """ Function to add together two Matrices
@@ -150,7 +150,7 @@ class Matrix:
             for i in range(n):
                 vals = []
                 for j in range(m):
-                    sum_index = self.matrix[i][j] + other.matrix[i][j]
+                    sum_index = self.entries[i][j] + other.entries[i][j]
                     vals.append(sum_index)
                 temp[i] = vals
 
@@ -178,7 +178,7 @@ class Matrix:
             for i in range(n):
                 vals = []
                 for j in range(m):
-                    sum_index = self.matrix[i][j] - other.matrix[i][j]
+                    sum_index = self.entries[i][j] - other.entries[i][j]
                     vals.append(sum_index)
                 temp[i] = vals
 
@@ -202,7 +202,7 @@ class Matrix:
         temp = [[] for i in range(self._n)]
         for i in range(self._n):
             for j in range(self._m):
-                temp[i].append(num * self.matrix[i][j])
+                temp[i].append(num * self.entries[i][j])
         
         return Matrix(temp)
 
@@ -216,4 +216,4 @@ class Matrix:
             string
         
         """
-        return str(self.matrix)
+        return str(self.entries)
