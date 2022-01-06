@@ -1,5 +1,5 @@
 import unittest
-from pymatrix import Matrix, SquareMatrix
+from pymatrix123 import Matrix, SquareMatrix
 
 
 class TestMatrix(unittest.TestCase):

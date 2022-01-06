@@ -1,12 +1,9 @@
-# py-matrix
+# py-matrix-123
 
-Created a python package that does basic matrix algebra such as addition, subtraction, multiplication, matrix inversion, etc.
-
+A python package that retrieves matrix dimensions, their trace, and performs matrix addition, subtraction, multiplication.
 requirements:
 
 `python3`
-
-`unittest`
 
 To test:
 
