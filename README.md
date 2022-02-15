@@ -2,7 +2,10 @@
 
 ## Installation
 
-To install with pip, run: `pip install py-Matrix-123`
+To install with pip: 
+```
+pip install py-Matrix-123
+```
 
 ## Basic Usage
 You can retrieve matrix dimensions, their trace, and performs matrix addition, subtraction, multiplication and scalar multiplication.
